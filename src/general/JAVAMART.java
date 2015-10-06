@@ -1,6 +1,11 @@
 package general;
 
+import hr.Employee;
+import hr.FullTimeEmployee;
+import hr.PartTimeEmployee;
 import hr.SalaryPlusCommissionEmployee;
+import hr.SeasonalEmployee;
+import java.util.ArrayList;
 import java.util.Scanner;
 import products.Product;
 
@@ -13,6 +18,9 @@ public class JAVAMART
     //main method
     public static void main(String[] args)
     {
+        //arraylists to store employees and products
+        ArrayList<Employee> empList = new ArrayList<>();
+        ArrayList<Product> prodList = new ArrayList<>();
        
         //employee test data
         SalaryPlusCommissionEmployee emp = new  SalaryPlusCommissionEmployee(
@@ -34,7 +42,7 @@ public class JAVAMART
         Scanner read = new Scanner(System.in);
         int input, hrInput, prodInput;
         String cont = "n";
-        boolean keepGoing = true, prodBool = true, hrBool = true;
+        boolean keepGoing = true, prodBool = true, hrBool = true;      
         
         getInitialMessage();
         
@@ -66,6 +74,13 @@ public class JAVAMART
                     else if(prodInput==2)
                     {
                         System.out.println("Enter a new product here");
+                        // vars for accept input
+                        String productId, productName, category, manufacturer, description,  partNum;
+                        double productCost, productPrice, productMarkup;
+                        int minimumInventory;
+                        // accept input from user
+                        System.out.println("Enter a new product here");
+                        
                         
                     }
                     else if(prodInput==0)
@@ -96,11 +111,72 @@ public class JAVAMART
                     {
                         System.out.println("Run Employee Search here");
                         
+                        
                     }
                     else if(prodInput==2)
                     {
-                        System.out.println("Enter a new employee here");
+                        // System.out.println("Enter a new employee here");
+                        // collect necessary information of the employee
+                        String firstName, lastName, position;
+                        int age, year, month, day;
+                        double baseSalary;
+                        System.out.println("First name: ");
+                        firstName = read.nextLine();
+                        System.out.println("Last name: ");
+                        lastName = read.nextLine();
+                        System.out.println("Age: ");
+                        age = Integer.parseInt(read.nextLine());
+                        System.out.println("Base salary: ");
+                        baseSalary = Double.parseDouble(read.nextLine());
+                        System.out.println("Position: ");
+                        position = read.nextLine();
+                        System.out.println("Hiring year: ");
+                        year = Integer.parseInt(read.nextLine());
+                        System.out.println("Hiring month: ");
+                        month = Integer.parseInt(read.nextLine());
+                        System.out.println("Hiring day: ");
+                        day = Integer.parseInt(read.nextLine());
                         
+                        // other info based on the employee type (fulltime, parttime or seasonal)
+                        // create new employee and store in EmpList accordingly
+                        System.out.println("Is this employee:");
+                        System.out.println("1 - Full-time");
+                        System.out.println("2 - Part-time");
+                        System.out.println("3 - Seasonal");
+                        int empTypeChoice = Integer.parseInt(read.nextLine());
+                        if (empTypeChoice == 1)
+                        {
+                            //Full-time
+                            System.out.println("Hours Per Week: ");
+                            double hoursPerWeek = Double.parseDouble(read.nextLine());
+                            Employee newEmp = new FullTimeEmployee(firstName, lastName, 
+                                    age, baseSalary, position, year, month, day, hoursPerWeek);
+                            empList.add(newEmp);
+                        }
+                        else if (empTypeChoice == 2)
+                        {
+                            //Part-time
+                            System.out.println("Hours Per Week: ");
+                            double hoursPerWeek = Double.parseDouble(read.nextLine());
+                            Employee newEmp = new PartTimeEmployee(firstName, lastName, 
+                                    age, baseSalary, position, year, month, day, hoursPerWeek);
+                            empList.add(newEmp);
+                        }
+                        else if (empTypeChoice == 3)
+                        {
+                            //seasonal
+                            System.out.println("Hours Per Week: ");
+                            double hoursPerWeek = Double.parseDouble(read.nextLine());
+                            System.out.println("Weeks of Work: ");
+                            double weeksOfWork = Double.parseDouble(read.nextLine());
+                            Employee newEmp = new SeasonalEmployee(firstName, lastName, 
+                                    age, baseSalary, position, year, month, day, hoursPerWeek, weeksOfWork);
+                            empList.add(newEmp);
+                        }
+                        else 
+                        {
+                            System.out.println("Invalid choice!");
+                        }                        
                     }
                     else if(prodInput==0)
                     {
