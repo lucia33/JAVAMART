@@ -33,16 +33,9 @@ public abstract class Employee {
         GregorianCalendar cal = new GregorianCalendar(year, month-1, day);
         this.dateOfHire = cal.getTime();
         this.empId = ServiceClass.getEmpId();
-        updateEmpCounter();        
+        updateEmpCounter();       
         
-    }
-    
-//    public Employee(String firstName, String lastName)
-//    {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this(firstName, lastName, 0);
-//    }
+    }    
     
     // accessor methods
     public String getFirstName()
@@ -54,37 +47,32 @@ public abstract class Employee {
     {
         return this.lastName;
     }
-    
-    public void setAge(int age)
-    {
-        if(age>0)
-        {
-            this.age = age;
-            modAge(age);
-        }
-            
-    }
-    
-    private void modAge(int age)
-    {
         
-    }
-    
-    private void updateEmpCounter()
-    {
-        numOfEmp++;
-    }
-    
-    
-    // accessor methods
     public int getEmpCount()
     {
         return numOfEmp;
     }
     
-    public double getBaseSalary()
+    public double getSalary()
     {
         return this.baseSalary;
+    }
+    
+    public abstract double getEarnings();
+    
+    
+    // mutator methods
+    public void setAge(int age)
+    {
+        if(age>0)
+        {
+            this.age = age;
+        }            
+    }    
+    
+    private void updateEmpCounter()
+    {
+        numOfEmp++;
     }
     
 }

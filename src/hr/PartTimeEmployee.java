@@ -20,7 +20,7 @@ public class PartTimeEmployee extends Employee {
     }
     
     @Override
-    public double getSalary()
+    public double getEarnings()
     {
         if (hoursPerWeek >= 20 && hoursPerWeek <= 25)
         return baseSalary * hoursPerWeek;

@@ -21,7 +21,7 @@ public class SeasonalEmployee extends FullTimeEmployee {
     }
     
     @Override
-    public double getSalary()
+    public double getEarnings()
     {
         if(hoursPerWeek >= 40 && hoursPerWeek <= 48)
         {

@@ -20,7 +20,7 @@ public class FullTimeEmployee extends Employee {
     }
     
     @Override
-    public double getSalary()
+    public double getEarnings()
     {
         if(hoursPerWeek >= 40 && hoursPerWeek <= 48)
         {
