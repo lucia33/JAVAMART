@@ -28,4 +28,11 @@ public class SeasonalEmployee extends FullTimeEmployee {
             return baseSalary * hoursPerWeek * weeksOfWork;
         }
     }
+    
+    @Override
+    public String toString()
+    {
+        return super.toString() +
+                "\nContracted Salary:\t" + getEarnings();
+    }
 }

@@ -10,10 +10,10 @@ public class FullTimeEmployee extends Employee {
     
     private double hoursPerWeek, baseSalary;
     //constructor
-    public FullTimeEmployee (String firstName,String lastName,int age,double baseSalary, 
+    public FullTimeEmployee (String firstName,String lastName,int age, double baseSalary,
             String position, int year,int month, int day, double hoursPerWeek) 
     {
-        super(firstName, lastName, age, baseSalary, position, year, month, day);
+        super(firstName, lastName, age, position, year, month, day);
         
         this.baseSalary = baseSalary;
         this.hoursPerWeek = hoursPerWeek;
@@ -26,6 +26,13 @@ public class FullTimeEmployee extends Employee {
         {
             return baseSalary * hoursPerWeek;
         }
+    }
+    
+    @Override
+    public String toString()
+    {
+        return super.toString() +
+                "\nWeekly Salary:\t" + getEarnings();
     }
     
 }

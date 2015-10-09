@@ -14,7 +14,7 @@ public abstract class Employee {
     private double baseSalary;
     private Date dateOfHire;
     private int age, empId;
-    private static int numOfEmp;
+    private static int empCount;
     
     // default constructor
     public Employee()
@@ -22,13 +22,12 @@ public abstract class Employee {
     }
     
     //overloading
-    public Employee(String firstName, String lastName, int age, double baseSalary,
+    public Employee(String firstName, String lastName, int age, 
             String position, int year, int month, int day)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.baseSalary = baseSalary;
         GregorianCalendar cal = new GregorianCalendar(year, month-1, day);
         this.dateOfHire = cal.getTime();
         this.empId = ServiceClass.getEmpId();
@@ -64,12 +63,7 @@ public abstract class Employee {
         
     public int getEmpCount()
     {
-        return numOfEmp;
-    }
-    
-    public double getSalary()
-    {
-        return this.baseSalary;
+        return empCount;
     }
     
     public int getEmpId()
@@ -91,7 +85,7 @@ public abstract class Employee {
     
     private void updateEmpCounter()
     {
-        numOfEmp++;
+        empCount++;
     }
     
     
@@ -99,12 +93,12 @@ public abstract class Employee {
     @Override
     public String toString()
     {
-        String empInfo = "";
-        empInfo += "\nId:\t\t" + getEmpId();
-        empInfo += "\nName:\t\t" + getFirstName() + "\t" + getLastName();
-        empInfo += "\nAge:\t\t" + getAge();
-        empInfo += "\nPosition:\t" + getPosition();
-        empInfo += "\nHire-Date:\t" + getDateOfHire(); 
-        return empInfo;        
+        String info = "Employee Info:";
+        info += "\nId:\t\t" + getEmpId();
+        info += "\nName:\t\t" + getFirstName() + "\t" + getLastName();
+        info += "\nAge:\t\t" + getAge();
+        info += "\nPosition:\t" + getPosition();
+        info += "\nHire-Date:\t" + getDateOfHire(); 
+        return info;        
     }
 }

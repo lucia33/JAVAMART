@@ -6,6 +6,7 @@ import hr.PartTimeEmployee;
 import hr.SeasonalEmployee;
 import java.util.ArrayList;
 import java.util.Scanner;
+import products.Manufacturer;
 import products.Product;
 
 /**
@@ -17,25 +18,20 @@ public class JAVAMART
     //main method
     public static void main(String[] args)
     {
-        //arraylists to store employees and products
+        //arraylists to store data
         ArrayList<Employee> empList = new ArrayList<>();
         ArrayList<Product> prodList = new ArrayList<>();
-       
-//        //employee test data
-//        SalaryPlusCommissionEmployee emp = new  SalaryPlusCommissionEmployee(
-//        "Tony","Persson",50,30000.00,"Sales Manager",2015,05,20,10000.00,0.2);
-//         
-//        //emp testing 
-//        System.out.println(emp.toString());
-//        emp.setLastName("Smith");
-//        System.out.println(emp.toString());
-//       
-       
-       
+        ArrayList<Manufacturer> mList = new ArrayList<>();
+
+        //manufacturer test data
+        Manufacturer testManufacutrer = new Manufacturer("DEBRACO", "888 ABC DRIVE", "888-888-8888");
+        mList.add(testManufacutrer);
+        System.out.println(mList.get(0).getMName());
+        
         //product test data
-//        Product myProduct = new Product("T123","Test Product", "Test Category", 
-//        "Test manufacturer", "Test Description", "Test Part Num", 10.00,20.00,
-//        0.22,50);
+        Product testProduct = new Product("Candle", mList.get(0), "Home Deco", "Seashore Spa Flavor");
+        prodList.add(testProduct);
+        System.out.println(testProduct.toString());
        
         //input vars
         Scanner read = new Scanner(System.in);
@@ -54,8 +50,7 @@ public class JAVAMART
             
             //if input is 1, run the product block
             if(input == 1)
-            {
-             
+            {             
                 //inner product loop that will work with the
                 //product block. Runs until the user ends it.
                 while(prodBool)
@@ -68,19 +63,30 @@ public class JAVAMART
                     if(prodInput==1)
                     {
                         System.out.println("Display Product list and details:");
-//                        System.out.println(myProduct.toString()); 
+                        for(Product prodList1 : prodList )
+                        {
+                            System.out.println(prodList1.toString()); 
+                        }
+                        // ************haven't build the SEARCH function since it's quite similar to the employee part******* 
                     }
                     else if(prodInput==2)
                     {
-                        System.out.println("Enter a new product here");
+                        // Input new product
+                        
                         // vars for accept input
-                        String productId, productName, category, manufacturer, description,  partNum;
-                        double productCost, productPrice, productMarkup;
-                        int minimumInventory;
+                        String productName, manufacturer, category, description;
                         // accept input from user
-                        System.out.println("Enter a new product here");
-                        
-                        
+                        System.out.println("Product name:");
+                        productName = read.nextLine();
+                        // *************haven't finish accept manufacturer input***********
+//                        System.out.println("Manufacturer:");
+//                        manufacturer = read.nextLine();
+                        System.out.println("Category:");
+                        category = read.nextLine();
+                        System.out.println("Description:");
+                        description = read.nextLine();
+                        Product tempProduct = new Product(productName, category, description);
+                        prodList.add(tempProduct);                        
                     }
                     else if(prodInput==0)
                     {
@@ -90,13 +96,11 @@ public class JAVAMART
                     else
                     {
                         getErrorMessage();
-                        
                     }
                 }
             }
             else if(input == 2)//if input is 2, run the HR block
             {
-            
                 //inner HR loop that will work with the
                 //HR block. Runs until the user ends it.
                 while(hrBool)

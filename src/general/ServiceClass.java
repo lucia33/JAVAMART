@@ -6,15 +6,15 @@ package general;
  */
 public class ServiceClass {
     private static int empId = 1000;
-//    private static int prodId = 1000;
+    private static int productId = 1000;
     
     public static int getEmpId()
     {
         return empId++;
     }
     
-//    public static int getProdId()
-//    {
-//        return prodId++;
-//    }
+    public static int getProductId()
+    {
+        return productId++;
+    }
 }
