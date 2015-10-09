@@ -13,7 +13,7 @@ public class PartTimeEmployee extends Employee {
     public PartTimeEmployee (String firstName,String lastName,int age,double baseSalary, 
             String position, int year,int month, int day, double hoursPerWeek) 
     {
-        super(firstName, lastName, age, position, year, month, day);
+        super(firstName, lastName, age, baseSalary, position, year, month, day);
         
         this.baseSalary = baseSalary;
         this.hoursPerWeek = hoursPerWeek;
@@ -23,7 +23,11 @@ public class PartTimeEmployee extends Employee {
     public double getEarnings()
     {
         if (hoursPerWeek >= 20 && hoursPerWeek <= 25)
-        return baseSalary * hoursPerWeek;
+        {
+            return this.baseSalary * hoursPerWeek;
+        }
+        // ********to be modified********
+        else return 0;
     }
     
     @Override

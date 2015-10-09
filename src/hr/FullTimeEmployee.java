@@ -13,7 +13,7 @@ public class FullTimeEmployee extends Employee {
     public FullTimeEmployee (String firstName,String lastName,int age, double baseSalary,
             String position, int year,int month, int day, double hoursPerWeek) 
     {
-        super(firstName, lastName, age, position, year, month, day);
+        super(firstName, lastName, age, baseSalary, position, year, month, day);
         
         this.baseSalary = baseSalary;
         this.hoursPerWeek = hoursPerWeek;
@@ -26,13 +26,14 @@ public class FullTimeEmployee extends Employee {
         {
             return baseSalary * hoursPerWeek;
         }
+        // ********to be modified********
+        else return 0;
     }
     
     @Override
     public String toString()
     {
-        return super.toString() +
-                "\nWeekly Salary:\t" + getEarnings();
+        return super.toString() + "\nWeekly Salary:\t" + getEarnings();
     }
     
 }

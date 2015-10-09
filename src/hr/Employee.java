@@ -22,12 +22,13 @@ public abstract class Employee {
     }
     
     //overloading
-    public Employee(String firstName, String lastName, int age, 
+    public Employee(String firstName, String lastName, int age, double baseSalary,
             String position, int year, int month, int day)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.baseSalary = baseSalary;
         GregorianCalendar cal = new GregorianCalendar(year, month-1, day);
         this.dateOfHire = cal.getTime();
         this.empId = ServiceClass.getEmpId();
@@ -39,33 +40,27 @@ public abstract class Employee {
     public String getFirstName()
     {
         return this.firstName;
-    }
-    
+    }    
     public String getLastName()
     {
         return this.lastName;
-    }
-    
+    }    
     public int getAge()
     {
         return this.age;
-    }
-    
+    }    
     public String getPosition()
     {
         return this.position;
-    }
-    
+    }    
     public Date getDateOfHire()
     {
         return dateOfHire;
-    }
-        
+    }        
     public int getEmpCount()
     {
         return empCount;
-    }
-    
+    }    
     public int getEmpId()
     {
         return empId;

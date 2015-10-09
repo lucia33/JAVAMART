@@ -155,7 +155,8 @@ public class JAVAMART
                         {
                             // search by Id
                             System.out.println("Please enter the emp Id: ");                            
-                            int idInput = Integer.parseInt(read.nextLine());  
+                            int idInput = Integer.parseInt(read.nextLine());
+                            // *******????validate input haven't figure out????********
                             for (Employee empList1 : empList) 
                             {
                                 empFound = (idInput == empList1.getEmpId());
@@ -210,7 +211,7 @@ public class JAVAMART
                             double hoursPerWeek = Double.parseDouble(read.nextLine());
                             Employee newEmp = new FullTimeEmployee(firstName, lastName, 
                                     age, baseSalary, position, year, month, day, hoursPerWeek);
-                            empList.add(newEmp);                            
+                            empList.add(newEmp);                              
                         }
                         else if (empTypeChoice == 2)
                         {

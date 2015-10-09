@@ -27,6 +27,8 @@ public class SeasonalEmployee extends FullTimeEmployee {
         {
             return baseSalary * hoursPerWeek * weeksOfWork;
         }
+        // ********to be modified********
+        else return 0;
     }
     
     @Override
