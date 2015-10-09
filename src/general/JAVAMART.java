@@ -3,7 +3,6 @@ package general;
 import hr.Employee;
 import hr.FullTimeEmployee;
 import hr.PartTimeEmployee;
-import hr.SalaryPlusCommissionEmployee;
 import hr.SeasonalEmployee;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -22,21 +21,21 @@ public class JAVAMART
         ArrayList<Employee> empList = new ArrayList<>();
         ArrayList<Product> prodList = new ArrayList<>();
        
-        //employee test data
-        SalaryPlusCommissionEmployee emp = new  SalaryPlusCommissionEmployee(
-        "Tony","Persson",50,30000.00,"Sales Manager",2015,05,20,10000.00,0.2);
-         
-        //emp testing 
-        System.out.println(emp.toString());
-        emp.setLastName("Smith");
-        System.out.println(emp.toString());
-       
+//        //employee test data
+//        SalaryPlusCommissionEmployee emp = new  SalaryPlusCommissionEmployee(
+//        "Tony","Persson",50,30000.00,"Sales Manager",2015,05,20,10000.00,0.2);
+//         
+//        //emp testing 
+//        System.out.println(emp.toString());
+//        emp.setLastName("Smith");
+//        System.out.println(emp.toString());
+//       
        
        
         //product test data
-        Product myProduct = new Product("T123","Test Product", "Test Category", 
-        "Test manufacturer", "Test Description", "Test Part Num", 10.00,20.00,
-        0.22,50);
+//        Product myProduct = new Product("T123","Test Product", "Test Category", 
+//        "Test manufacturer", "Test Description", "Test Part Num", 10.00,20.00,
+//        0.22,50);
        
         //input vars
         Scanner read = new Scanner(System.in);
@@ -69,7 +68,7 @@ public class JAVAMART
                     if(prodInput==1)
                     {
                         System.out.println("Display Product list and details:");
-                        System.out.println(myProduct.toString()); 
+//                        System.out.println(myProduct.toString()); 
                     }
                     else if(prodInput==2)
                     {
@@ -90,7 +89,7 @@ public class JAVAMART
                     }
                     else
                     {
-                        System.out.println("Invalid input! Please try again");
+                        getErrorMessage();
                         
                     }
                 }
@@ -107,10 +106,69 @@ public class JAVAMART
                     //read the user input
                     prodInput = Integer.parseInt(read.nextLine());
                     //selection statement to determine what to do
-                    if(prodInput==1)
+                    if(prodInput==1) // SEARCH employee
                     {
-                        System.out.println("Run Employee Search here");
-                        
+                        getSearchMethod();
+                        int searchMethodInput = Integer.parseInt(read.nextLine());
+                        boolean empFound = false;
+                        if (searchMethodInput==1) 
+                        {
+                            // search by firstname
+                            System.out.println("Please enter first name: ");                            
+                            String fNameInput = read.nextLine();  
+                            for (Employee empList1 : empList) 
+                            {
+                                empFound = fNameInput.equalsIgnoreCase(empList1.getFirstName());
+                                if (empFound) 
+                                {
+                                    System.out.println(empList1.toString());
+                                }
+                            }
+                            if (!empFound)
+                            {
+                                getErrorMessage();
+                            }                            
+                        }
+                        else if (searchMethodInput==2) 
+                        {
+                            // search by lastname
+                            System.out.println("Please enter last name: ");                            
+                            String lNameInput = read.nextLine();  
+                            for (Employee empList1 : empList) 
+                            {
+                                empFound = lNameInput.equalsIgnoreCase(empList1.getLastName());
+                                if (empFound) 
+                                {
+                                    System.out.println(empList1.toString());
+                                }
+                            }
+                            if (!empFound)
+                            {
+                                getErrorMessage();
+                            }
+                        }
+                        else if (searchMethodInput==3) 
+                        {
+                            // search by Id
+                            System.out.println("Please enter the emp Id: ");                            
+                            int idInput = Integer.parseInt(read.nextLine());  
+                            for (Employee empList1 : empList) 
+                            {
+                                empFound = (idInput == empList1.getEmpId());
+                                if (empFound) 
+                                {
+                                    System.out.println(empList1.toString());
+                                }
+                            }
+                            if (!empFound)
+                            {
+                                getErrorMessage();
+                            }
+                        }
+                        else
+                        {
+                            getErrorMessage();
+                        }                       
                         
                     }
                     else if(prodInput==2)
@@ -139,10 +197,7 @@ public class JAVAMART
                         
                         // other info based on the employee type (fulltime, parttime or seasonal)
                         // create new employee and store in EmpList accordingly
-                        System.out.println("Is this employee:");
-                        System.out.println("1 - Full-time");
-                        System.out.println("2 - Part-time");
-                        System.out.println("3 - Seasonal");
+                        getEmpChoice();                        
                         int empTypeChoice = Integer.parseInt(read.nextLine());
                         if (empTypeChoice == 1)
                         {
@@ -151,7 +206,7 @@ public class JAVAMART
                             double hoursPerWeek = Double.parseDouble(read.nextLine());
                             Employee newEmp = new FullTimeEmployee(firstName, lastName, 
                                     age, baseSalary, position, year, month, day, hoursPerWeek);
-                            empList.add(newEmp);
+                            empList.add(newEmp);                            
                         }
                         else if (empTypeChoice == 2)
                         {
@@ -175,7 +230,7 @@ public class JAVAMART
                         }
                         else 
                         {
-                            System.out.println("Invalid choice!");
+                            getErrorMessage();
                         }                        
                     }
                     else if(prodInput==0)
@@ -185,8 +240,7 @@ public class JAVAMART
                     }
                     else
                     {
-                        System.out.println("Invalid input! Please try again");
-                        
+                        getErrorMessage();
                     }
                             
                 }
@@ -199,7 +253,7 @@ public class JAVAMART
             else//default block if input is invalid
             {
                 keepGoing = true;
-                System.out.println("Please enter a valid input value!");
+                getErrorMessage();
                 getInitialMessage();
             }
                     
@@ -231,5 +285,23 @@ public class JAVAMART
         System.out.println("1: Search employees");
         System.out.println("2: Enter new employee");
         System.out.println("0: Exit");
+    }
+    public static void getEmpChoice()
+    {
+        System.out.println("Is this employee:");
+        System.out.println("1: Full-time");
+        System.out.println("2: Part-time");
+        System.out.println("3: Seasonal");
+    }
+    public static void getSearchMethod()
+    {
+        System.out.println("Would you like to search by:");
+        System.out.println("1: First name");
+        System.out.println("2: Last name");
+        System.out.println("3: Id");
+    }
+    public static void getErrorMessage()
+    {
+        System.out.println("Invalid input! Please try again");
     }
 }

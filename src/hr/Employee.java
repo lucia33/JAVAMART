@@ -12,7 +12,6 @@ public abstract class Employee {
     
     private String firstName, lastName, position;
     private double baseSalary;
-    //*composition
     private Date dateOfHire;
     private int age, empId;
     private static int numOfEmp;
@@ -47,6 +46,21 @@ public abstract class Employee {
     {
         return this.lastName;
     }
+    
+    public int getAge()
+    {
+        return this.age;
+    }
+    
+    public String getPosition()
+    {
+        return this.position;
+    }
+    
+    public Date getDateOfHire()
+    {
+        return dateOfHire;
+    }
         
     public int getEmpCount()
     {
@@ -57,6 +71,11 @@ public abstract class Employee {
     {
         return this.baseSalary;
     }
+    
+    public int getEmpId()
+    {
+        return empId;
+    } 
     
     public abstract double getEarnings();
     
@@ -75,4 +94,17 @@ public abstract class Employee {
         numOfEmp++;
     }
     
+    
+    // Modify toString to print out employee info
+    @Override
+    public String toString()
+    {
+        String empInfo = "";
+        empInfo += "\nId:\t\t" + getEmpId();
+        empInfo += "\nName:\t\t" + getFirstName() + "\t" + getLastName();
+        empInfo += "\nAge:\t\t" + getAge();
+        empInfo += "\nPosition:\t" + getPosition();
+        empInfo += "\nHire-Date:\t" + getDateOfHire(); 
+        return empInfo;        
+    }
 }
